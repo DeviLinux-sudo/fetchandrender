@@ -1,22 +1,11 @@
 async function makeThreeApiCalls(){
-   const [postResponse, userResponse ]  = await Promise.all([
-    fetch('https://jsonplaceholder.typicode.com/posts'),
-    fetch('https://jsonplaceholder.typicode.com/users')
-   ]);
-
-   if (!postResponse.ok && userResponse.ok) {
-    const message = `An error has occured: ${postResponse.status || userResponse.status}`;
-    throw new Error(message);
-  }
-   
-   const post = await postResponse.json();
-   const users = await userResponse.json();
-   return [post,users];
-}
-
-makeThreeApiCalls().then(([post,users]) => {
-    console.log(post);
-    console.log(users);
-}).catch(error => {
-error.message;
-});
+     const todoitem = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+   const response = await Promise.all(
+    todoitem.map(async item => {
+        const r = await fetch(`https://jsonplaceholder.typicode.com/todos/${item}`)
+        .then(res => res.json())
+        .then(json => console.log(json))
+    
+    }));}
+    
+makeThreeApiCalls();
